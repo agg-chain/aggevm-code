@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package aggevm.aggevm;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "aggevm/aggevm/params.proto";
+import "aggevm/aggevm/evm.proto";
+
+option go_package = "aggevm/x/aggevm/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/aggevm/aggevm/params";
+  
+  }
+  
+  // Queries a list of Evm items.
+  rpc Evm    (QueryGetEvmRequest) returns (QueryGetEvmResponse) {
+    option (google.api.http).get = "/aggevm/aggevm/evm/{index}";
+  
+  }
+  rpc EvmAll (QueryAllEvmRequest) returns (QueryAllEvmResponse) {
+    option (google.api.http).get = "/aggevm/aggevm/evm";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetEvmRequest {
+  string index = 1;
+}
+
+message QueryGetEvmResponse {
+  Evm evm = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllEvmRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllEvmResponse {
+  repeated Evm                                    evm        = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

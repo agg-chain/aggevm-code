@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package aggevm.aggevm;
+
+import "gogoproto/gogo.proto";
+import "aggevm/aggevm/params.proto";
+import "aggevm/aggevm/evm.proto";
+
+option go_package = "aggevm/x/aggevm/types";
+
+// GenesisState defines the aggevm module's genesis state.
+message GenesisState {
+           Params params  = 1 [(gogoproto.nullable) = false];
+  repeated Evm    evmList = 2 [(gogoproto.nullable) = false];
+}
+

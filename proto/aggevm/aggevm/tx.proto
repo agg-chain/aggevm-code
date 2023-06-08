@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package aggevm.aggevm;
+
+option go_package = "aggevm/x/aggevm/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc Call     (MsgCall    ) returns (MsgCallResponse    );
+  rpc Mint     (MsgMint    ) returns (MsgMintResponse    );
+  rpc Transfer (MsgTransfer) returns (MsgTransferResponse);
+}
+message MsgCall {
+  string creator = 1;
+  string data    = 2;
+}
+
+message MsgCallResponse {}
+
+message MsgMint {
+  string creator = 1;
+  string to      = 2;
+  string amount  = 3;
+}
+
+message MsgMintResponse {}
+
+message MsgTransfer {
+  string creator = 1;
+  string to      = 2;
+  string amount  = 3;
+}
+
+message MsgTransferResponse {}
+

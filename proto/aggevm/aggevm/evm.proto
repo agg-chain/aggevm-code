@@ -1,0 +1,11 @@
+syntax = "proto3";
+package aggevm.aggevm;
+
+option go_package = "aggevm/x/aggevm/types";
+
+message Evm {
+  string index = 1; 
+  string statedb = 2; 
+  
+}
+
