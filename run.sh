@@ -1,0 +1,1 @@
+./aggevmd start aggevmd --rpc.laddr tcp://0.0.0.0:26659 --consensus.create_empty_blocks_interval 10s --p2p.laddr tcp://0.0.0.0:26660 --grpc-web.address 0.0.0.0:19091
